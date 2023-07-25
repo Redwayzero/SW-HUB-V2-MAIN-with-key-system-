@@ -23,7 +23,7 @@ local Section = Tab:AddSection({
 	Name = "Key System (wait 10 seconds)"
 })
 
-Tab:AddParagraph("Paragraph","Join https://discord.gg/5aUyGjPpf3 for the key in the discord server")
+Tab:AddParagraph("Important","Join https://discord.gg/5aUyGjPpf3 for the key in the discord server")
 wait(10)
 OrionLib:Destroy() 
 
