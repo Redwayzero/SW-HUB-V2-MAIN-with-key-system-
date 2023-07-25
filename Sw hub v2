@@ -98,6 +98,10 @@ Tab:AddButton({
   	end    
 })
 
+Tab:AddParagraph("NOTICE","Join https://discord.gg/5aUyGjPpf3 for the key in the discord server")
+
+
+
 local Tab = Window:MakeTab({
 	Name = "",
 	Icon = "rbxassetid://13065334180",
