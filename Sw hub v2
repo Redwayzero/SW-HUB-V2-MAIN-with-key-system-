@@ -1,40 +1,49 @@
- local HttpService = game:GetService("HttpService")
-local Webhook_URL = "https://discord.com/api/webhooks/1133872929357176882/GQaamC0ljEYVQqO6elGl1VXElaRbZMLCfREOG4vawsNVfEFsGXn-aR9r9nbtdzzHV_Kz"
+-- Replace 'syn' with the appropriate HTTP module based on the context
+local HttpService = game:GetService("HttpService")
+local HTTP = syn and syn.request or http_request or request or HttpPost
 
-local function logToDiscord(command, playerName)
-    local embed = {
-        title = "Sw Hub V2 Execution",
-        description = playerName .. " used command: " .. command,
-        type = "rich",
-        color = tonumber(0xffffff),
-        fields = {
-            {
-                name = "HWID:",
-                value = game:GetService("RbxAnalyticsService"):GetClientId(),
-                inline = true,
+local WebhookURL = "https://discord.com/api/webhooks/1133872929357176882/GQaamC0ljEYVQqO6elGl1VXElaRbZMLCfREOG4vawsNVfEFsGXn-aR9r9nbtdzzHV_Kz"
+
+local Headers = {
+    ['Content-Type'] = 'application/json',
+}
+
+local data = {
+    ["embeds"] = {
+        {
+            ["title"] = "Someone executed Sw Hub V2",
+            ["description"] = game.Players.LocalPlayer.UserId .. " has executed Sw Hub V2",
+            ["type"] = "rich",
+            ["color"] = tonumber(0xffffff),
+            ["fields"] = {
+                {
+                    ["name"] = "HWID :",
+                    ["value"] = game:GetService("RbxAnalyticsService"):GetClientId(),
+                    ["inline"] = true,
+                },
             },
         },
-    }
+    },
+}
 
-    local data = {
-        embeds = {embed},
-    }
+local PlayerData = HttpService:JSONEncode(data)
 
-    local headers = {
-        ['Content-Type'] = 'application/json',
-    }
+local RequestData = {
+    Url = WebhookURL,
+    Method = "POST",
+    Headers = Headers,
+    Body = PlayerData
+}
 
-    local requestData = HttpService:JSONEncode(data)
-
-    local Request = http_request or request or HttpPost or syn.request
-    Request({
-        Url = Webhook_URL,
-        Body = requestData,
-        Method = "POST",
-        Headers = headers,
-    })
+-- Perform the request
+local success, response = pcall(HTTP, RequestData)
+if not success then
+    warn("Failed to send webhook:", response)
 end
-
+  
+  
+  
+  
 --Real Script below
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
