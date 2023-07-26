@@ -42,7 +42,7 @@ OrionLib:MakeNotification({
     Time = 5
 })
 
-_G.Key = "Whynokey1"
+_G.Key = "yesnokey"
 _G.KeyInput = "string"
 
 
