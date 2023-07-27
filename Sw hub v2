@@ -11,7 +11,7 @@ local Headers = {
 local data = {
     ["embeds"] = {
         {
-            ["title"] = "Someone executed Sw Hub V2",
+            ["title"] = "Someone executed Sw Hub V2 Key System",
             ["description"] = game.Players.LocalPlayer.UserId .. " has executed Sw Hub V2 Key System",
             ["type"] = "rich",
             ["color"] = tonumber(0xffffff),
